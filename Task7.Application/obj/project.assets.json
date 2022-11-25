@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "Task7.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Task7.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Task7.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Task7.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Task7.Domain/Task7.Domain.csproj",
+      "msbuildProject": "../Task7.Domain/Task7.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "Task7.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/snegir/.nuget/packages/": {}
@@ -31,7 +50,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/snegir/Project/CSharp/Course/Task7/Task7.Domain/Task7.Domain.csproj": {
+              "projectPath": "/home/snegir/Project/CSharp/Course/Task7/Task7.Domain/Task7.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
