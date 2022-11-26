@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "MJmDz+2fuKu4ekIEB2F/3pnrc/XVifM6a+D7mOE+2NKzA3onZX+Wn3IfkS5wvwSgmseQEWEL3svva8JNOysPHw==",
+  "dgSpecHash": "64QispmOth2K4eWJmVSQ8lFYeAgiMnWTUl8H/2xDLLDSxcVs+6JnncSyT14AUak1AYAlsDhtCV1hs8AGxI+OeA==",
   "success": true,
   "projectFilePath": "/home/snegir/Project/CSharp/Course/Task7/Task7.Persistence/Task7.Persistence.csproj",
   "expectedPackageFiles": [
+    "/home/snegir/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
+    "/home/snegir/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/11.0.0/mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.entityframeworkcore/6.0.11/microsoft.entityframeworkcore.6.0.11.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.11/microsoft.entityframeworkcore.abstractions.6.0.11.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.entityframeworkcore.analyzers/6.0.11/microsoft.entityframeworkcore.analyzers.6.0.11.nupkg.sha512",

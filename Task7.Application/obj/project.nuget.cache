@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "BSMaPsAV92vmVFs2NJ9aHJNvkPzfnZP4bRUeNhXvLek5y1e8THRy2L3n9lhOJzhBJAVISZDNG6Tc6/x0jkBlVg==",
+  "dgSpecHash": "4jiIqy6nAda2LLeTr2t7FL/r75KISDM2K7qVGeWuq4ctSVzunRBl30XTEIHY/0wpwjqD8aNlHUYYsFTjVDHvSQ==",
   "success": true,
   "projectFilePath": "/home/snegir/Project/CSharp/Course/Task7/Task7.Application/Task7.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/snegir/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
+    "/home/snegir/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/11.0.0/mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }
