@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
 builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson()
     .AddRazorRuntimeCompilation();
 
 builder.Services.AddApplication();

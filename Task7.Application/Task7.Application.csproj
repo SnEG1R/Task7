@@ -7,6 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Mvc.Abstractions">
+        <HintPath>..\..\..\..\..\..\..\usr\lib64\dotnet\shared\Microsoft.AspNetCore.App\6.0.10\Microsoft.AspNetCore.Mvc.Abstractions.dll</HintPath>
+      </Reference>
       <Reference Include="Microsoft.EntityFrameworkCore">
         <HintPath>..\..\..\..\..\.nuget\packages\microsoft.entityframeworkcore\6.0.11\lib\net6.0\Microsoft.EntityFrameworkCore.dll</HintPath>
       </Reference>

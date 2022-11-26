@@ -9,7 +9,6 @@ namespace Task7.Application.CQs.Game.Command.Create;
 public class CreateGameCommandHandler
     : IRequestHandler<CreateGameCommand, Guid>
 {
-    private const int PlayingFieldSize = 9;
     private readonly ITicTacToeDbContext _ticTacToeDbContext;
 
     public CreateGameCommandHandler(ITicTacToeDbContext ticTacToeDbContext)
@@ -30,7 +29,7 @@ public class CreateGameCommandHandler
             Players = new List<Player>() { player },
             Status = GameStatuses.Created,
             ConnectionId = Guid.NewGuid(),
-            PlayingField = new char[PlayingFieldSize]
+            PlayingField = PlayingFields.Default
         };
         await _ticTacToeDbContext.Games.AddAsync(game, cancellationToken);
         await _ticTacToeDbContext.SaveChangesAsync(cancellationToken);
