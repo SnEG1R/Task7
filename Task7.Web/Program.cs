@@ -1,3 +1,8 @@
+using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Task7.Application;
+using Task7.Application.Common.Mappings;
+using Task7.Application.Interfaces;
 using Task7.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,7 +11,17 @@ var configuration = builder.Configuration;
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();
 
+builder.Services.AddApplication();
 builder.Services.AddPersistence(configuration);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => { options.LoginPath = "/Login/Index"; });
+
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(ITicTacToeDbContext).Assembly));
+});
 
 var app = builder.Build();
 
@@ -21,10 +36,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Menu}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
