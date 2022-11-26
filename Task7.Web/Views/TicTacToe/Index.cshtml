@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="~/css/tic-tac-toe/tic-tac-toe-page.css">
+
+<div class="container main-container">
+    <div class="tic-tac-toe-container">
+        <div class="row">
+            <div class="col cell">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </div>
+            <div class="col cell">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg>
+            </div>
+            <div class="col cell"></div>
+        </div>
+        <div class="row">
+            <div class="col cell"></div>
+            <div class="col cell"></div>
+            <div class="col cell"></div>
+        </div>
+        <div class="row">
+            <div class="col cell"></div>
+            <div class="col cell"></div>
+            <div class="col cell"></div>
+        </div>
+    </div>
+    
+    <div class="players-info text-white mt-2">
+        Players: Name 1, Name 2
+    </div>
+
+    <div class="footer-btn-container mt-2" style="display: none">
+        <div class="btn-exit me-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            </svg>
+        </div>
+        <div class="btn-anew ms-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div hidden="hidden" class="alert alert-danger container-fluid fs-6 fw-bold" role="alert">
+    You lost!
+</div>
+
+<div hidden="hidden" class="alert alert-success container-fluid fs-6 fw-bold" role="alert">
+    You won!
+</div>
+
+<div hidden="hidden" class="alert alert-warning container-fluid fs-6 fw-bold" role="alert">
+    Draw!
+</div>

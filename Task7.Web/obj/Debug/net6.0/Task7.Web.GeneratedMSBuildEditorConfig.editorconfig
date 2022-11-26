@@ -15,10 +15,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = /home/snegir/Project/CSharp/Course/Task7/Task7.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/Connection/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29ubmVjdGlvbi9JbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -27,12 +23,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/Menu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/TicTacToe/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGljVGFjVG9lL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Views/_ViewImports.cshtml]
