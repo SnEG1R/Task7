@@ -1,3 +1,5 @@
+@model JoinVm
+
 <link rel="stylesheet" href="~/css/menu/menu-page.css">
 
 <div class="container d-flex align-items-center justify-content-center" style="height: 100vh">
@@ -8,19 +10,25 @@
                     <h5 class="card-title">Create a game</h5>
                     <p class="card-text">Create a game and get a connection code.</p>
                     <input disabled type="text" placeholder="code" id="code-connection-text" class="form-control mb-3 text-center fw-bold"/>
-                    <button type="button" class="btn btn-outline-danger w-100">Create</button>
+                    <button type="button" class="btn-create-game btn btn-outline-danger w-100">Create</button>
                 </div>
             </div>
         </div>
         <div class="col-md pb-3">
             <div class="card h-100">
-                <div class="card-body">
+                <form class="card-body" asp-controller="Menu" asp-action="JoinToGame">
                     <h5 class="card-title">Connecting to the game</h5>
                     <p class="card-text">Paste the code to connect to the game.</p>
-                    <input type="text" placeholder="enter code" id="connection-code-input" class="form-control mb-3 text-center fw-bold"/>
-                    <button type="button" class="btn btn-outline-success w-100">Connect</button>
-                </div>
+                    <input asp-for="ConnectionId" type="text" placeholder="enter code" id="connection-code-input" class="form-control mb-3 text-center fw-bold"/>
+                    <button type="submit" class="btn-join-game btn btn-outline-success w-100">Connect</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<div class="alert alert-danger container-fluid fs-6 fw-bold" role="alert">
+    @Html.ValidationMessage("game-error")
+</div>
+
+<script src="~/js/game.control.js"></script>

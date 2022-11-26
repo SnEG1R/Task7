@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8Xbozd9mveXE2xVEkgcZsCgZhsO1RJbdP+sV11wtUzX81mQho/KbhaWX8esSBQg4ApuLwdKlejV+hGwvMJeVGQ==",
+  "dgSpecHash": "sqlG90ejtId0zyd3q/XZR0Nj7+tHGx/LkALtM2v2C70+MtosNLAmdrrGR5R8yJfxvzFv9ganJzWtL9OmdfWvFw==",
   "success": true,
   "projectFilePath": "/home/snegir/Project/CSharp/Course/Task7/Task7.Web/Task7.Web.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "/home/snegir/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/home/snegir/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/11.0.0/mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.aspnetcore.jsonpatch/6.0.11/microsoft.aspnetcore.jsonpatch.6.0.11.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/6.0.11/microsoft.aspnetcore.mvc.newtonsoftjson.6.0.11.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.aspnetcore.mvc.razor.extensions/6.0.11/microsoft.aspnetcore.mvc.razor.extensions.6.0.11.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.aspnetcore.mvc.razor.runtimecompilation/6.0.11/microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.11.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.11/microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
@@ -32,6 +34,8 @@
     "/home/snegir/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.netcore.platforms/2.1.2/microsoft.netcore.platforms.2.1.2.nupkg.sha512",
+    "/home/snegir/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/home/snegir/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/snegir/.nuget/packages/npgsql/6.0.7/npgsql.6.0.7.nupkg.sha512",
     "/home/snegir/.nuget/packages/npgsql.entityframeworkcore.postgresql/6.0.7/npgsql.entityframeworkcore.postgresql.6.0.7.nupkg.sha512",
     "/home/snegir/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",

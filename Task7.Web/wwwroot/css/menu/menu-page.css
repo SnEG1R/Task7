@@ -12,3 +12,11 @@ body {
     outline: none;
     box-shadow: none;
 }
+
+.alert {
+    position: absolute;
+    border: none;
+    background-color: #2a2e34;
+    color: #f8d7da;
+    top: 10px;
+}
