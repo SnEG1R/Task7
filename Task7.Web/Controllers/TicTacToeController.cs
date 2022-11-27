@@ -6,8 +6,9 @@ namespace Task7.Web.Controllers;
 [Authorize]
 public class TicTacToeController : Controller
 {
-    public IActionResult Index()
+    [HttpGet]
+    public IActionResult Index(Guid connectionId)
     {
-        return View();
+        return View(connectionId);
     }
 }

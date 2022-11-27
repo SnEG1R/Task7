@@ -32,7 +32,7 @@ public class MenuController : Controller
         };
         var connectionId = await _mediator.Send(command);
 
-        return Ok(connectionId.ToString());
+        return RedirectToAction("Index", "TicTacToe", new { connectionId });
     }
 
     [HttpPost]
@@ -44,10 +44,10 @@ public class MenuController : Controller
             PlayerName = User.Identity!.Name!,
             ModelState = ModelState
         };
-        var modelState = await _mediator.Send(command);
+        var vm = await _mediator.Send(command);
 
-        return !modelState.IsValid
+        return !vm.ModelState.IsValid
             ? View("~/Views/Menu/Index.cshtml", model)
-            : RedirectToAction("Index", "TicTacToe");
+            : RedirectToAction("Index", "TicTacToe", new { connectionId = vm.ConnectionId });
     }
 }

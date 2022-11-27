@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Task7.Application;
 using Task7.Application.Common.Mappings;
+using Task7.Application.Hubs.Game;
 using Task7.Application.Interfaces;
 using Task7.Persistence;
 
@@ -11,6 +12,8 @@ var configuration = builder.Configuration;
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson()
     .AddRazorRuntimeCompilation();
+
+builder.Services.AddSignalR();
 
 builder.Services.AddApplication();
 builder.Services.AddPersistence(configuration);
@@ -40,8 +43,13 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Login}/{action=Index}/{id?}");
+
+    endpoints.MapHub<GameHub>("/game-hub");
+});
 
 app.Run();

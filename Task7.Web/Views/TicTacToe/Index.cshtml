@@ -1,3 +1,5 @@
+@model Guid
+
 <link rel="stylesheet" href="~/css/tic-tac-toe/tic-tac-toe-page.css">
 
 <div class="container main-container">
@@ -26,7 +28,7 @@
             <div class="col cell"></div>
         </div>
     </div>
-    
+
     <div class="players-info text-white mt-2">
         Players: Name 1, Name 2
     </div>
@@ -46,6 +48,14 @@
     </div>
 </div>
 
+<div class="loader position-absolute w-100 h-100 top-0 bg-dark bg-opacity-75 d-flex justify-content-center align-items-center">
+    <div class="btn bg-light">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span>Waiting for the second player... <br></span>
+        Connection code - <span style="user-select: all">@Model</span>
+    </div>
+</div>
+
 <div hidden="hidden" class="alert alert-danger container-fluid fs-6 fw-bold" role="alert">
     You lost!
 </div>
@@ -57,3 +67,7 @@
 <div hidden="hidden" class="alert alert-warning container-fluid fs-6 fw-bold" role="alert">
     Draw!
 </div>
+
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/game.hub.control.js"></script>
+<script src="~/js/main.js"></script>

@@ -6,7 +6,7 @@ using Task7.Application.Interfaces;
 namespace Task7.Application.CQs.Game.Command.Join;
 
 public class JoinGameCommandHandler
-    : IRequestHandler<JoinGameCommand, ModelStateDictionary>
+    : IRequestHandler<JoinGameCommand, JoinGameVm>
 {
     private readonly ITicTacToeDbContext _tacToeDbContext;
 
@@ -15,7 +15,7 @@ public class JoinGameCommandHandler
         _tacToeDbContext = tacToeDbContext;
     }
 
-    public async Task<ModelStateDictionary> Handle(JoinGameCommand request,
+    public async Task<JoinGameVm> Handle(JoinGameCommand request,
         CancellationToken cancellationToken)
     {
         var payer = await _tacToeDbContext.Players
@@ -28,23 +28,23 @@ public class JoinGameCommandHandler
         var game = await _tacToeDbContext.Games
             .Include(p => p.Players)
             .FirstOrDefaultAsync(g => g.ConnectionId
-                                 == connectionId, cancellationToken);
-        
+                                      == connectionId, cancellationToken);
+
         if (game == null)
         {
             request.ModelState.AddModelError("game-error", "This game does not exist");
-            return request.ModelState;
+            return new JoinGameVm() { ModelState = request.ModelState };
         }
 
         if (game.Players.Count >= 2)
         {
             request.ModelState.AddModelError("game-error", "Game session busy");
-            return request.ModelState;
+            return new JoinGameVm() { ConnectionId = Guid.Empty, ModelState = request.ModelState };
         }
 
         game.Players.Add(payer);
         await _tacToeDbContext.SaveChangesAsync(cancellationToken);
 
-        return request.ModelState;
+        return new JoinGameVm() { ConnectionId = game.ConnectionId, ModelState = request.ModelState };
     }
 }
