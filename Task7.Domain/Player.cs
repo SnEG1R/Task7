@@ -8,4 +8,5 @@ public class Player
     public string Name { get; set; }
     
     public List<Game> PlayingFields { get; set; }
+    public List<Group> Groups { get; set; }
 }

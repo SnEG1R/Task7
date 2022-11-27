@@ -6,12 +6,12 @@
     <div class="row text-white w-100">
         <div class="col-md pb-3">
             <div class="card h-100">
-                <div class="card-body">
+                <form class="card-body" asp-controller="Menu" asp-action="CreateGame">
                     <h5 class="card-title">Create a game</h5>
                     <p class="card-text">Create a game and get a connection code.</p>
                     <input disabled type="text" placeholder="code" id="code-connection-text" class="form-control mb-3 text-center fw-bold"/>
-                    <button type="button" class="btn-create-game btn btn-outline-danger w-100">Create</button>
-                </div>
+                    <button type="submit" class="btn-create-game btn btn-outline-danger w-100">Create</button>
+                </form>
             </div>
         </div>
         <div class="col-md pb-3">

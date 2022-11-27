@@ -8,6 +8,7 @@ public sealed class TicTacToeDbContext : DbContext, ITicTacToeDbContext
 {
     public DbSet<Player> Players { get; set; }
     public DbSet<Game> Games { get; set; }
+    public DbSet<Group> Groups { get; set; }
 
     public TicTacToeDbContext(DbContextOptions<TicTacToeDbContext> options) 
         : base(options)

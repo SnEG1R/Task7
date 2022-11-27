@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "64QispmOth2K4eWJmVSQ8lFYeAgiMnWTUl8H/2xDLLDSxcVs+6JnncSyT14AUak1AYAlsDhtCV1hs8AGxI+OeA==",
+  "dgSpecHash": "4BrqIRX5YZGrHpYzs2zF5Atm/V3XKmHlx1oXAY/WWCptksVJAbygLLdXO+pe6iCbLMcnHuo0YhjQ9mFUKR01Ig==",
   "success": true,
   "projectFilePath": "/home/snegir/Project/CSharp/Course/Task7/Task7.Persistence/Task7.Persistence.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,10 @@
     "/home/snegir/.nuget/packages/mediatr/11.0.0/mediatr.11.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/mediatr.contracts/1.0.1/mediatr.contracts.1.0.1.nupkg.sha512",
     "/home/snegir/.nuget/packages/mediatr.extensions.microsoft.dependencyinjection/11.0.0/mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.aspnetcore.mvc.abstractions/2.2.0/microsoft.aspnetcore.mvc.abstractions.2.2.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.aspnetcore.routing.abstractions/2.2.0/microsoft.aspnetcore.routing.abstractions.2.2.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.entityframeworkcore/6.0.11/microsoft.entityframeworkcore.6.0.11.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.11/microsoft.entityframeworkcore.abstractions.6.0.11.nupkg.sha512",
@@ -22,11 +26,14 @@
     "/home/snegir/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/npgsql/6.0.7/npgsql.6.0.7.nupkg.sha512",
     "/home/snegir/.nuget/packages/npgsql.entityframeworkcore.postgresql/6.0.7/npgsql.entityframeworkcore.postgresql.6.0.7.nupkg.sha512",
+    "/home/snegir/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
     "/home/snegir/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/home/snegir/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "/home/snegir/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/home/snegir/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,11 +1,9 @@
-using MediatR;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Task7.Application.CQs.Game.Command.Join;
 
-public class JoinGameCommand : IRequest<JoinGameVm>
+public class JoinGameVm
 {
-    public string ConnectionId { get; set; }
-    public string PlayerName { get; set; }
+    public Guid ConnectionId { get; set; } = Guid.Empty;
     public ModelStateDictionary ModelState { get; set; }
 }
