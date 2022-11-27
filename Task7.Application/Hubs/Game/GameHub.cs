@@ -26,10 +26,9 @@ public class GameHub : Hub
 
         if (group != null)
         {
-            if (group.Players.Count <= 2)
+            if (group.Players.Count <= 2 && group.Players.All(p => p.Name != playerName))
             {
                 group.Players.Add(player);
-                await SaveGroup(connectionId);
             }
         }
         else
@@ -40,17 +39,12 @@ public class GameHub : Hub
                 ConnectionId = connectionId
             };
             await _ticTacToeDbContext.Groups.AddAsync(group);
-            await SaveGroup(connectionId);
-
-            return;
         }
 
-        await Clients.Group(connectionId.ToString()).SendAsync("RemoveLoader");
-    }
-
-    private async Task SaveGroup(Guid connectionId)
-    {
         await _ticTacToeDbContext.SaveChangesAsync(new CancellationToken());
-        await Groups.AddToGroupAsync(Context.ConnectionId, connectionId.ToString());
+
+        if (group.Players.Count >= 2)
+            await Clients.Users(_ticTacToeDbContext.Players
+                .Select(p => p.Name)).SendAsync("RemoveLoader");
     }
 }

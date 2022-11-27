@@ -4,6 +4,5 @@ const hubConnection = new signalR.HubConnectionBuilder()
 
 hubConnection.on("RemoveLoader", function () {
     let loader = document.querySelector('.loader');
-    console.log("www")
     loader.remove();
 });
