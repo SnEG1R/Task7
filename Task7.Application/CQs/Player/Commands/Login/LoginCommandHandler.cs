@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Task7.Application.Interfaces;
 
-namespace Task7.Application.CQs.User.Commands.Login;
+namespace Task7.Application.CQs.Player.Commands.Login;
 
 public class LoginCommandHandler : IRequestHandler<LoginCommand, ClaimsIdentity>
 {

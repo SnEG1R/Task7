@@ -9,5 +9,4 @@ public class Player
     public string GameChip { get; set; } = "";
 
     public List<Game> Games { get; set; }
-    public List<Group> Groups { get; set; }
 }

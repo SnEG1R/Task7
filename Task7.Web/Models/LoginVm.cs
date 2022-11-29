@@ -1,6 +1,6 @@
 using AutoMapper;
 using Task7.Application.Common.Mappings;
-using Task7.Application.CQs.User.Commands.Login;
+using Task7.Application.CQs.Player.Commands.Login;
 
 namespace Task7.Web.Models;
 

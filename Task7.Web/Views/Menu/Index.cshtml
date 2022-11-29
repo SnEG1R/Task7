@@ -6,17 +6,16 @@
     <div class="row text-white w-100">
         <div class="col-md pb-3">
             <div class="card h-100">
-                <form class="card-body" asp-controller="Menu" asp-action="CreateGame">
+                <form class="card-body d-flex flex-column align-items-center position-relative" asp-controller="Menu" asp-action="CreateGame">
                     <h5 class="card-title">Create a game</h5>
                     <p class="card-text">Create a game and get a connection code.</p>
-                    <input disabled type="text" placeholder="code" id="code-connection-text" class="form-control mb-3 text-center fw-bold"/>
-                    <button type="submit" class="btn-create-game btn btn-outline-danger w-100">Create</button>
+                    <button type="submit" class="btn-create-game btn btn-outline-danger mt-4" style="width: 95%">Create</button>
                 </form>
             </div>
         </div>
         <div class="col-md pb-3">
             <div class="card h-100">
-                <form class="card-body" asp-controller="Menu" asp-action="JoinToGame">
+                <form class="card-body d-flex flex-column align-items-center" asp-controller="Menu" asp-action="JoinToGame">
                     <h5 class="card-title">Connecting to the game</h5>
                     <p class="card-text">Paste the code to connect to the game.</p>
                     <input asp-for="ConnectionId" type="text" placeholder="enter code" id="connection-code-input" class="form-control mb-3 text-center fw-bold"/>

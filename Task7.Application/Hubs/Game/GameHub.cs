@@ -1,7 +1,11 @@
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Task7.Application.Common.Constants;
+using Task7.Application.CQs.Game.Command.Join;
+using Task7.Application.CQs.Player.Commands.PlayerTurn;
+using Task7.Application.CQs.Player.Queries.GetWinnerPlayer;
 using Task7.Application.Interfaces;
 using Task7.Domain;
 
@@ -11,85 +15,90 @@ namespace Task7.Application.Hubs.Game;
 public class GameHub : Hub
 {
     private readonly ITicTacToeDbContext _ticTacToeDbContext;
+    private readonly IMediator _mediator;
 
-    public GameHub(ITicTacToeDbContext ticTacToeDbContext)
+    public GameHub(ITicTacToeDbContext ticTacToeDbContext, IMediator mediator)
     {
         _ticTacToeDbContext = ticTacToeDbContext;
+        _mediator = mediator;
     }
 
     public async Task Connect(Guid connectionId)
     {
         var playerName = Context.User?.Identity?.Name!;
-        var game = await _ticTacToeDbContext.Games
-            .FirstAsync(g => g.ConnectionId == connectionId);
+        var command = new JoinGameCommand()
+        {
+            ConnectionId = connectionId.ToString(),
+            PlayerName = playerName
+        };
 
-        var group = await AddPlayerToGroup(playerName, connectionId);
+        var joinGameVm = await _mediator.Send(command);
 
-        if (group.Players.Count >= 2)
-            foreach (var playerItem in group.Players)
-                await Clients.Users(playerItem.Name)
-                    .SendAsync("GetConnectionInfo", new GameInfoDto()
-                    {
-                        PlayerChip = playerItem.GameChip,
-                        PlayingField = game.PlayingField,
-                        IsMove = playerItem.GameChip == GameChips.Cross
-                    });
+        var query = new GetWinnerPlayerQuery() { ConnetionId = joinGameVm.Game.ConnectionId };
+        var winnerPlayer = await _mediator.Send(query);
+
+        if (joinGameVm.Game.Players.Count >= 2)
+        {
+            await Send(joinGameVm.Game);
+
+            if (winnerPlayer != null)
+                await SendWinner(joinGameVm.Game.Players, winnerPlayer);
+        }
     }
 
     public async Task PlayerTurn(Guid connectionId, int positionField)
     {
         var playerName = Context.User?.Identity?.Name!;
+        var playerTurnCommand = new PlayerTurnCommand()
+        {
+            ConnectionId = connectionId,
+            PlayerName = playerName,
+            PositionField = positionField
+        };
+        var game = await _mediator.Send(playerTurnCommand);
 
-        var player = await _ticTacToeDbContext.Players
-            .FirstAsync(p => p.Name == playerName);
+        var query = new GetWinnerPlayerQuery() { ConnetionId = game.ConnectionId };
+        var winnerPlayer = await _mediator.Send(query);
+
+        await Send(game);
+
+        if (winnerPlayer != null)
+            await SendWinner(game.Players, winnerPlayer);
+    }
+
+    public async Task Restart(Guid connectionId)
+    {
         var game = await _ticTacToeDbContext.Games
             .Include(g => g.Players)
             .FirstAsync(g => g.ConnectionId == connectionId);
 
-        var playerChip = player.GameChip;
-        game.PlayingField[positionField] = playerChip;
+        game.PlayingField = PlayingFields.Default;
+        if (game.Players.Count >= 2)
+            game.Players = new List<Domain.Player>();
 
         await _ticTacToeDbContext.SaveChangesAsync(new CancellationToken());
 
-        foreach (var playerItem in game.Players)
-            await Clients.User(playerItem.Name)
-                .SendAsync("GetPlayingField", new GameInfoDto()
-                {
-                    PlayerChip = playerItem.GameChip,
-                    PlayingField = game.PlayingField,
-                    IsMove = playerItem.GameChip != player.GameChip
-                });
+        await Connect(connectionId);
     }
 
-    private async Task<Group> AddPlayerToGroup(string playerName, Guid connectionId)
+    private async Task Send(Domain.Game game)
     {
-        var player = await _ticTacToeDbContext.Players
-            .FirstAsync(p => p.Name == playerName);
-        var group = await _ticTacToeDbContext.Groups
-            .Include(g => g.Players)
-            .FirstOrDefaultAsync(g => g.ConnectionId == connectionId);
-
-        if (group != null)
+        foreach (var player in game.Players)
         {
-            if (group.Players.Count <= 2 && group.Players.All(p => p.Name != playerName))
-            {
-                player.GameChip = GameChips.Zero;
-                group.Players.Add(player);
-            }
+            await Clients.Users(player.Name)
+                .SendAsync("GetConnectionInfo", new GameInfoDto()
+                {
+                    PlayerNameStep = game.PlayerNameStep,
+                    PlayerChip = player.GameChip,
+                    PlayingField = game.PlayingField
+                });
         }
-        else
-        {
-            player.GameChip = GameChips.Cross;
-            group = new Group()
-            {
-                Players = new List<Player>() { player },
-                ConnectionId = connectionId
-            };
-            await _ticTacToeDbContext.Groups.AddAsync(group);
-        }
+    }
 
-        await _ticTacToeDbContext.SaveChangesAsync(new CancellationToken());
-
-        return group;
+    private async Task SendWinner(IEnumerable<Domain.Player> players, string winnerPlayer)
+    {
+        foreach (var player in players)
+            await Clients.Users(player.Name)
+                .SendAsync("GetWinnerPlayer", winnerPlayer, player.Name == winnerPlayer);
     }
 }

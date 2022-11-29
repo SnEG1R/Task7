@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="~/css/tic-tac-toe/tic-tac-toe-page.css">
 
 <div class="container main-container">
+    <div class="text-white mb-3 fs-3 fw-bold">
+        <div class="turning-player">awdwd</div>
+    </div>
     <div class="tic-tac-toe-container">
         <div class="row">
             <div class="col cell" id="0" onclick="move(this)"></div>
@@ -48,19 +51,20 @@
     </div>
 </div>
 
-<div hidden="hidden" class="alert alert-danger container-fluid fs-6 fw-bold" role="alert">
-    You lost!
-</div>
-
-<div hidden="hidden" class="alert alert-success container-fluid fs-6 fw-bold" role="alert">
-    You won!
-</div>
-
-<div hidden="hidden" class="alert alert-warning container-fluid fs-6 fw-bold" role="alert">
-    Draw!
+<div class="winner-info-container position-absolute bg-dark bg-opacity-75 w-100 h-100 top-0 justify-content-center align-items-center" style="display: none;">
+    <div class="card position-absolute border-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">{win}</div>
+        <div class="card-body text-secondary">
+            <h5 class="card-title">Winner - {winner}</h5>
+            <p class="card-text">
+                <button type="button" onclick="restartGame()" class="btn btn-restart-game btn-outline-success mt-4 w-100">Play more</button>
+            </p>
+        </div>
+    </div>
 </div>
 
 <script src="~/lib/signalr/signalr.js"></script>
 <script src="~/js/game.hub.control.js"></script>
+<script src="~/js/player.hub.control.js"></script>
 <script src="~/js/gameplay.js"></script>
 <script src="~/js/main.js"></script>

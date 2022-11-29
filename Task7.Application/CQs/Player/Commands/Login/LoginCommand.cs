@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using MediatR;
 
-namespace Task7.Application.CQs.User.Commands.Login;
+namespace Task7.Application.CQs.Player.Commands.Login;
 
 public class LoginCommand : IRequest<ClaimsIdentity>
 {

@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Task7.Application.CQs.User.Commands.Login;
+using Task7.Application.CQs.Player.Commands.Login;
 using Task7.Web.Models;
 
 namespace Task7.Web.Controllers;

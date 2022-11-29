@@ -5,27 +5,28 @@ let zero = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="b
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             </svg>`;
 
+let playerName;
 let gameInfo = {
+    playerNameStep: '',
     playerChip: '',
     playingField: [],
     isMove: false
 };
 
 async function move(element) {
-    console.log(gameInfo)
-    
-    if (gameInfo.playerChip === 'x' && gameInfo.isMove)
+    console.log(playerName + ' - ' + gameInfo.playerNameStep)
+    if (gameInfo.playerChip === 'x' && playerName === gameInfo.playerNameStep && element.innerHTML === '')
         element.innerHTML = cross;
-    else if (gameInfo.playerChip === 'o' && gameInfo.isMove)
+    else if (gameInfo.playerChip === 'o' && playerName === gameInfo.playerNameStep && element.innerHTML === '')
         element.innerHTML = zero;
     else
         return;
 
-    gameInfo.isMove = false;
+    // gameInfo.isMove = false;
     await hubConnection.invoke("PlayerTurn", connectionId, +element.id);
 }
 
-function WriteNewField() {
+function writeNewField() {
     let cells = document.querySelectorAll('.cell');
 
     cells.forEach((cell, i) => {
@@ -34,4 +35,20 @@ function WriteNewField() {
         else if (gameInfo.playingField[i] === 'o')
             cell.innerHTML = zero;
     });
+}
+
+async function restartGame() {
+    await hubConnection.invoke("Restart", connectionId);
+    document.querySelector('.winner-info-container').style.display = 'none';
+    location.reload();
+}
+
+function showTurningPlayer() {
+    let turningPlayer = document.querySelector('.turning-player');
+
+    if (playerName === gameInfo.playerNameStep) {
+        turningPlayer.innerHTML = 'Your turn';
+    } else {
+        turningPlayer.innerHTML = `${gameInfo.playerNameStep}\'s turn`;
+    }
 }
