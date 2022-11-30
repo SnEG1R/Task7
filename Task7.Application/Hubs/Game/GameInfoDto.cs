@@ -5,5 +5,5 @@ public class GameInfoDto
     public string PlayerNameStep { get; set; }
     public string PlayerChip { get; set; }
     public string[] PlayingField { get; set; }
-    public bool IsGameFinish { get; set; }
+    public string GameStatus { get; set; }
 }

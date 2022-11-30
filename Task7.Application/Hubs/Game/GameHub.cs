@@ -96,11 +96,11 @@ public class GameHub : Hub
         var finishGameCommand = new LeaveGameCommand(connectionId, playerName);
         var game = await _mediator.Send(finishGameCommand);
 
-        await Send(game, true);
+        await Send(game);
         await SendAllGame();
     }
 
-    private async Task Send(Domain.Game game, bool isGameFinish = false)
+    private async Task Send(Domain.Game game)
     {
         foreach (var player in game.Players)
         {
@@ -110,7 +110,7 @@ public class GameHub : Hub
                     PlayerNameStep = game.PlayerNameStep,
                     PlayerChip = player.GameChip,
                     PlayingField = game.PlayingField,
-                    IsGameFinish = isGameFinish
+                    GameStatus = game.Status
                 });
         }
     }

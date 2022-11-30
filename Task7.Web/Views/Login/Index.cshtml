@@ -14,7 +14,7 @@
                                 <input asp-for="Name" placeholder="login" type="text" id="login-input" class="form-control form-control-lg"/>
                             </div>
 
-                            <button class="btn btn-outline-light btn-lg px-5 w-100" type="submit">Login</button>
+                            <button class="btn btn-login btn-outline-light btn-lg px-5 w-100" type="submit">Login</button>
                         </form>
                     </div>
                 </div>
@@ -22,3 +22,12 @@
         </div>
     </div>
 </section>
+<script>
+let btnLogin = document.querySelector('.btn-login');
+let inputLogin = document.getElementById('login-input');
+btnLogin.disabled = true;
+
+inputLogin.addEventListener('keyup', () => {
+    btnLogin.disabled = inputLogin.value === '' || null;
+});
+</script>

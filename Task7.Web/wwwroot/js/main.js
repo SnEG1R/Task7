@@ -9,14 +9,18 @@ window.onload = async function () {
     await hubConnection.invoke("Connect", connectionId);
 
     showTurningPlayer();
+
+    history.pushState({page: 1}, "title 1", location.href);
 }
 
-window.onunload = async function () {
+window.onpopstate = async function () {
+    history.pushState({page: 1}, "title 1", '/');
+    location.reload();
     await hubConnection.invoke("LeaveGame", connectionId);
 }
 
 window.onclick = function () {
-    if (gameInfo.isGameFinish) {
+    if (gameInfo.gameStatus === 'Completed') {
         if (window.confirm("The second player left the game!")) {
             document.location.href = '/';
         } else {
