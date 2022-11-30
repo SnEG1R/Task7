@@ -3,8 +3,12 @@ const hubConnection = new signalR.HubConnectionBuilder()
     .build();
 
 hubConnection.on("GetConnectionInfo", function (gameInfoDto) {
-    if (gameInfoDto.isGameFinish) {
-        document.location.href = '/';
+    if (gameInfo.isGameFinish) {
+        if (window.confirm("The second player left the game!")) {
+            document.location.href = '/';
+        } else {
+            document.location.href = '/';
+        }
     }
 
     gameInfo = gameInfoDto;

@@ -29,12 +29,9 @@ public class LeaveGameCommandHandler
         var removedPlayer = game.Players
             .First(p => p.Name == request.PlayerName);
 
-        // game.Players.ForEach(player => player.GameChip = GameChips.Empty);
-
         game.Players.Remove(removedPlayer);
 
-        if (game.Players.Count <= 0)
-            game.Status = GameStatuses.Completed;
+        game.Status = GameStatuses.Completed;
 
         await _ticTacToeDbContext.SaveChangesAsync(cancellationToken);
 
