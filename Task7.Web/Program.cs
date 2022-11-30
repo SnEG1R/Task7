@@ -1,15 +1,48 @@
-var builder = WebApplication.CreateBuilder(args);
+using System.Net;
+using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Task7.Application;
+using Task7.Application.Common.Mappings;
+using Task7.Application.Hubs.Game;
+using Task7.Application.Hubs.Player;
+using Task7.Application.Interfaces;
+using Task7.Persistence;
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson()
+    .AddRazorRuntimeCompilation();
+
+builder.Services.AddSignalR();
+
+builder.Services.AddApplication();
+builder.Services.AddPersistence(configuration);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => { options.LoginPath = "/Login/Index"; });
+
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(ITicTacToeDbContext).Assembly));
+});
+
+builder.WebHost.ConfigureKestrel(config =>
+{
+    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+    {
+        config.Listen(IPAddress.Any, Convert.ToInt32(
+            Environment.GetEnvironmentVariable("PORT")));
+    }
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -18,10 +51,17 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Menu}/{action=Index}/{id?}");
+
+    endpoints.MapHub<GameHub>("/game-hub");
+    endpoints.MapHub<PlayerHub>("/player-hub");
+});
 
 app.Run();
