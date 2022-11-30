@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Routing.Patterns;
 using Microsoft.EntityFrameworkCore;
 using Task7.Application.Common.Constants;
 using Task7.Application.Interfaces;
@@ -23,13 +24,13 @@ public class CreateGameCommandHandler
             .FirstOrDefaultAsync(p => p.Name == request.PayerName, cancellationToken);
         if (player == null)
             throw new NullReferenceException($"{nameof(player)} is null");
-
+        
         var game = new Domain.Game()
         {
-            Players = new List<Player>() { player },
-            Status = GameStatuses.Created,
+            Status = GameStatuses.Open,
             ConnectionId = Guid.NewGuid(),
-            PlayingField = PlayingFields.Default
+            PlayingField = PlayingFields.Default,
+            PlayerNameStep = player.Name
         };
         await _ticTacToeDbContext.Games.AddAsync(game, cancellationToken);
         await _ticTacToeDbContext.SaveChangesAsync(cancellationToken);

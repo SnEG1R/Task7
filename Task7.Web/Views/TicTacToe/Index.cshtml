@@ -3,36 +3,27 @@
 <link rel="stylesheet" href="~/css/tic-tac-toe/tic-tac-toe-page.css">
 
 <div class="container main-container">
+    <div class="text-white mb-3 fs-3 fw-bold">
+        <div class="turning-player">awdwd</div>
+    </div>
     <div class="tic-tac-toe-container">
         <div class="row">
-            <div class="col cell">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                </svg>
-            </div>
-            <div class="col cell">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                </svg>
-            </div>
-            <div class="col cell"></div>
+            <div class="col cell" id="0" onclick="move(this)"></div>
+            <div class="col cell" id="1" onclick="move(this)"></div>
+            <div class="col cell" id="2" onclick="move(this)"></div>
         </div>
         <div class="row">
-            <div class="col cell"></div>
-            <div class="col cell"></div>
-            <div class="col cell"></div>
+            <div class="col cell" id="3" onclick="move(this)"></div>
+            <div class="col cell" id="4" onclick="move(this)"></div>
+            <div class="col cell" id="5" onclick="move(this)"></div>
         </div>
         <div class="row">
-            <div class="col cell"></div>
-            <div class="col cell"></div>
-            <div class="col cell"></div>
+            <div class="col cell" id="6" onclick="move(this)"></div>
+            <div class="col cell" id="7" onclick="move(this)"></div>
+            <div class="col cell" id="8" onclick="move(this)"></div>
         </div>
     </div>
-
-    <div class="players-info text-white mt-2">
-        Players: Name 1, Name 2
-    </div>
-
+    
     <div class="footer-btn-container mt-2" style="display: none">
         <div class="btn-exit me-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
@@ -56,18 +47,20 @@
     </div>
 </div>
 
-<div hidden="hidden" class="alert alert-danger container-fluid fs-6 fw-bold" role="alert">
-    You lost!
-</div>
-
-<div hidden="hidden" class="alert alert-success container-fluid fs-6 fw-bold" role="alert">
-    You won!
-</div>
-
-<div hidden="hidden" class="alert alert-warning container-fluid fs-6 fw-bold" role="alert">
-    Draw!
+<div class="winner-info-container position-absolute bg-dark bg-opacity-75 w-100 h-100 top-0 justify-content-center align-items-center" style="display: none;">
+    <div class="card position-absolute border-secondary mb-3" style="max-width: 18rem;">
+        <div class="card-header">{win}</div>
+        <div class="card-body text-secondary">
+            <h5 class="card-title">Winner - {winner}</h5>
+            <p class="card-text">
+                <button type="button" onclick="restartGame()" class="btn btn-restart-game btn-outline-success mt-4 w-100">Play more</button>
+            </p>
+        </div>
+    </div>
 </div>
 
 <script src="~/lib/signalr/signalr.js"></script>
 <script src="~/js/game.hub.control.js"></script>
+<script src="~/js/player.hub.control.js"></script>
+<script src="~/js/game.js"></script>
 <script src="~/js/main.js"></script>

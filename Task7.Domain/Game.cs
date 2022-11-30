@@ -6,6 +6,7 @@ public class Game
     public Guid ConnectionId { get; set; }
     public string[] PlayingField { get; set; }
     public string Status { get; set; }
+    public string PlayerNameStep { get; set; }
 
     public List<Player> Players { get; set; }
 }

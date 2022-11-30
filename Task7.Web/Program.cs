@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Task7.Application;
 using Task7.Application.Common.Mappings;
 using Task7.Application.Hubs.Game;
+using Task7.Application.Hubs.Player;
 using Task7.Application.Interfaces;
 using Task7.Persistence;
 
@@ -47,9 +48,10 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Login}/{action=Index}/{id?}");
+        pattern: "{controller=Menu}/{action=Index}/{id?}");
 
     endpoints.MapHub<GameHub>("/game-hub");
+    endpoints.MapHub<PlayerHub>("/player-hub");
 });
 
 app.Run();

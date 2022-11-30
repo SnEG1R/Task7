@@ -42,12 +42,13 @@ public class MenuController : Controller
         {
             ConnectionId = model.ConnectionId,
             PlayerName = User.Identity!.Name!,
+            IsMvc = true,
             ModelState = ModelState
         };
         var vm = await _mediator.Send(command);
 
         return !vm.ModelState.IsValid
             ? View("~/Views/Menu/Index.cshtml", model)
-            : RedirectToAction("Index", "TicTacToe", new { connectionId = vm.ConnectionId });
+            : RedirectToAction("Index", "TicTacToe", new { connectionId = vm.Game.ConnectionId });
     }
 }
