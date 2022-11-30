@@ -3,7 +3,10 @@ const hubConnection = new signalR.HubConnectionBuilder()
     .build();
 
 hubConnection.on("GetConnectionInfo", function (gameInfoDto) {
-    console.log(gameInfo)
+    if (gameInfoDto.isGameFinish) {
+        document.location.href = '/';
+    }
+
     gameInfo = gameInfoDto;
 
     showTurningPlayer();
@@ -25,6 +28,10 @@ hubConnection.on("GetWinnerPlayer", function (winnerPlayerName, isWin) {
         .replace("{win}", isWin ? "You won!" : "You lost!");
 
     winnerInfoContainer.style.display = 'flex';
+});
+
+hubConnection.on("GetAllGame", function (games) {
+    GetAllGame(games.games);
 });
 
 function removeLoader() {

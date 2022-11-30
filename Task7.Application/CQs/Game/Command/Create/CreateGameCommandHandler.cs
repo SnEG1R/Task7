@@ -27,7 +27,7 @@ public class CreateGameCommandHandler
         
         var game = new Domain.Game()
         {
-            Status = GameStatuses.Created,
+            Status = GameStatuses.Open,
             ConnectionId = Guid.NewGuid(),
             PlayingField = PlayingFields.Default,
             PlayerNameStep = player.Name

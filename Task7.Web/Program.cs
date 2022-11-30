@@ -48,7 +48,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Login}/{action=Index}/{id?}");
+        pattern: "{controller=Menu}/{action=Index}/{id?}");
 
     endpoints.MapHub<GameHub>("/game-hub");
     endpoints.MapHub<PlayerHub>("/player-hub");

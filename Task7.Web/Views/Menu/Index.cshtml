@@ -2,25 +2,44 @@
 
 <link rel="stylesheet" href="~/css/menu/menu-page.css">
 
-<div class="container d-flex align-items-center justify-content-center" style="height: 100vh">
-    <div class="row text-white w-100">
-        <div class="col-md pb-3">
-            <div class="card h-100">
-                <form class="card-body d-flex flex-column align-items-center position-relative" asp-controller="Menu" asp-action="CreateGame">
-                    <h5 class="card-title">Create a game</h5>
-                    <p class="card-text">Create a game and get a connection code.</p>
-                    <button type="submit" class="btn-create-game btn btn-outline-danger mt-4" style="width: 95%">Create</button>
-                </form>
+<div class="container d-flex align-items-center justify-content-center flex-column" style="height: 100vh">
+    <div class="container">
+        <div class="row text-white w-100">
+            <div class="col-md pb-3">
+                <div class="card h-100">
+                    <form class="card-body d-flex flex-column align-items-center position-relative" asp-controller="Menu" asp-action="CreateGame">
+                        <h5 class="card-title">Create a game</h5>
+                        <p class="card-text">Create a game and get a connection code.</p>
+                        <button type="submit" class="btn-create-game btn btn-outline-danger mt-4" style="width: 100%">Create</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md pb-3">
+                <div class="card h-100">
+                    <form class="join-game card-body d-flex flex-column align-items-center" asp-controller="Menu" asp-action="JoinToGame">
+                        <h5 class="card-title">Connecting to the game</h5>
+                        <p class="card-text">Paste the code to connect to the game.</p>
+                        <input asp-for="ConnectionId" type="text" placeholder="enter code" id="connection-code-input" class="form-control mb-3 text-center fw-bold"/>
+                        <button type="submit" class="btn-join-game btn btn-outline-success w-100">Connect</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="col-md pb-3">
-            <div class="card h-100">
-                <form class="card-body d-flex flex-column align-items-center" asp-controller="Menu" asp-action="JoinToGame">
-                    <h5 class="card-title">Connecting to the game</h5>
-                    <p class="card-text">Paste the code to connect to the game.</p>
-                    <input asp-for="ConnectionId" type="text" placeholder="enter code" id="connection-code-input" class="form-control mb-3 text-center fw-bold"/>
-                    <button type="submit" class="btn-join-game btn btn-outline-success w-100">Connect</button>
-                </form>
+    </div>
+    <div class="container text-white">
+        <div class="row w-100">
+            <div class="col-md pb-3">
+                <div class="card h-100">
+                    <div class="p-2 d-flex justify-content-center fs-4 border-bottom border-secondary">
+                        All games
+                    </div>
+                    <form asp-controller="Menu" asp-action="JoinToGame" class="form-join-game" style="height: 31vh; overflow-x: hidden">
+                        <div class="list-game">
+
+                        </div>
+                        <input name="ConnectionId" class="connection-id" type="hidden" value="">
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -30,4 +49,21 @@
     @Html.ValidationMessage("game-error")
 </div>
 
-<script src="~/js/game.control.js"></script>
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/game.hub.control.js"></script>
+<script src="~/js/game.js"></script>
+<script>
+window.onload = async function () {
+   await hubConnection.start();
+   await hubConnection.invoke("SendAllGame");
+}
+
+function joinToGame(element) {
+    let form = document.querySelector('.form-join-game');
+    let inputConnectionId = document.querySelector('.connection-id');
+    
+    inputConnectionId.value = element.querySelector('.connect-id').innerHTML.trim();
+
+    form.submit();
+}
+</script>

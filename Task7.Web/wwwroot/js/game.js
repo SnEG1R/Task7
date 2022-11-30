@@ -7,22 +7,13 @@ let zero = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="b
 
 let playerName;
 let gameInfo = {
-    playerNameStep: '',
-    playerChip: '',
-    playingField: [],
-    isMove: false
+    playerNameStep: '', playerChip: '', playingField: [], isGameFinish: false
 };
 
 async function move(element) {
     console.log(playerName + ' - ' + gameInfo.playerNameStep)
-    if (gameInfo.playerChip === 'x' && playerName === gameInfo.playerNameStep && element.innerHTML === '')
-        element.innerHTML = cross;
-    else if (gameInfo.playerChip === 'o' && playerName === gameInfo.playerNameStep && element.innerHTML === '')
-        element.innerHTML = zero;
-    else
-        return;
+    if (gameInfo.playerChip === 'x' && playerName === gameInfo.playerNameStep && element.innerHTML === '') element.innerHTML = cross; else if (gameInfo.playerChip === 'o' && playerName === gameInfo.playerNameStep && element.innerHTML === '') element.innerHTML = zero; else return;
 
-    // gameInfo.isMove = false;
     await hubConnection.invoke("PlayerTurn", connectionId, +element.id);
 }
 
@@ -30,10 +21,7 @@ function writeNewField() {
     let cells = document.querySelectorAll('.cell');
 
     cells.forEach((cell, i) => {
-        if (gameInfo.playingField[i] === 'x')
-            cell.innerHTML = cross;
-        else if (gameInfo.playingField[i] === 'o')
-            cell.innerHTML = zero;
+        if (gameInfo.playingField[i] === 'x') cell.innerHTML = cross; else if (gameInfo.playingField[i] === 'o') cell.innerHTML = zero;
     });
 }
 
@@ -51,4 +39,21 @@ function showTurningPlayer() {
     } else {
         turningPlayer.innerHTML = `${gameInfo.playerNameStep}\'s turn`;
     }
+}
+
+function GetAllGame(games) {
+    let listGameContainer = document.querySelector('.list-game');
+
+    listGameContainer.innerHTML = '';
+    games.forEach((game) => {
+        listGameContainer
+            .innerHTML += `<div onclick="joinToGame(this)" class="clo card-body d-flex justify-content-center align-items-center">
+                                <div class="connect-id pe-4 fs-5">
+                                    ${game.connectionId}
+                                </div>
+                                <div class="w-25">
+                                    <button type="button" class="btn btn-outline-success w-100 fs-5">Connect</button>
+                                </div>
+                            </div>`
+    });
 }

@@ -32,7 +32,7 @@ public class TicTacToe : ITicTacToe
         for (var i = 0; i < MapSize; i++)
         {
             var column = map.GetColumn(i);
-            var winner = GetSequenceWinner(column);
+            var winner = GetChipPlayerWinner(column);
 
             if (winner != null)
                 return winner;
@@ -46,7 +46,7 @@ public class TicTacToe : ITicTacToe
         for (var i = 0; i < MapSize; i++)
         {
             var row = map.GetRow(i);
-            var winner = GetSequenceWinner(row);
+            var winner = GetChipPlayerWinner(row);
 
             if (winner != null)
                 return winner;
@@ -60,16 +60,16 @@ public class TicTacToe : ITicTacToe
         var principalDiagonal = map.GetDiagonal();
         var secondaryDiagonal = map.GetDiagonal(false);
 
-        var winner = GetSequenceWinner(principalDiagonal);
+        var winner = GetChipPlayerWinner(principalDiagonal);
         if (winner != null)
             return winner;
 
-        winner = GetSequenceWinner(secondaryDiagonal);
+        winner = GetChipPlayerWinner(secondaryDiagonal);
 
         return winner;
     }
 
-    private static string? GetSequenceWinner(string[] sequence)
+    private static string? GetChipPlayerWinner(string[] sequence)
     {
         if (sequence.All(e => e == GameChips.Cross))
             return GameChips.Cross;

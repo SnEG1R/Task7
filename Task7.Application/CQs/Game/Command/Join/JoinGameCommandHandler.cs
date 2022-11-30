@@ -53,11 +53,11 @@ public class JoinGameCommandHandler
         switch (game.Players.Count)
         {
             case <= 0:
-                player.GameChip = GameChips.Cross;
+                player.GameChip = GetPlayerChip(player, game);
                 game.Players.Add(player);
                 break;
             case < 2 when game.Players.All(p => p.Name != request.PlayerName):
-                player.GameChip = GameChips.Zero;
+                player.GameChip = GetPlayerChip(player, game);
                 game.Players.Add(player);
                 break;
         }
@@ -65,5 +65,12 @@ public class JoinGameCommandHandler
         await _tacToeDbContext.SaveChangesAsync(cancellationToken);
 
         return new JoinGameVm() { Game = game, ModelState = request.ModelState };
+    }
+
+    private static string GetPlayerChip(Domain.Player player, Domain.Game game)
+    {
+        return player.Name == game.PlayerNameStep
+            ? GameChips.Cross
+            : GameChips.Zero;
     }
 }
