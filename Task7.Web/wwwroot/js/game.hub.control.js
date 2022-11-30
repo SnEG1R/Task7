@@ -3,7 +3,7 @@ const hubConnection = new signalR.HubConnectionBuilder()
     .build();
 
 hubConnection.on("GetConnectionInfo", function (gameInfoDto) {
-    if (gameInfo.isGameFinish) {
+    if (gameInfo.gameStatus === 'Completed') {
         if (window.confirm("The second player left the game!")) {
             document.location.href = '/';
         } else {
@@ -25,7 +25,6 @@ hubConnection.on("GetPlayingField", function (gameInfoDto) {
 
 hubConnection.on("GetWinnerPlayer", function (winnerPlayerName, isWin) {
     let winnerInfoContainer = document.querySelector('.winner-info-container');
-    document.querySelector('.turning-player').remove();
 
     winnerInfoContainer.innerHTML = winnerInfoContainer.innerHTML
         .replace("{winner}", `${winnerPlayerName}`)

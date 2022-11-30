@@ -7,11 +7,10 @@ let zero = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="b
 
 let playerName;
 let gameInfo = {
-    playerNameStep: '', playerChip: '', playingField: [], isGameFinish: false
+    playerNameStep: '', playerChip: '', playingField: [], gameStatus: ''
 };
 
 async function move(element) {
-    console.log(playerName + ' - ' + gameInfo.playerNameStep)
     if (gameInfo.playerChip === 'x' && playerName === gameInfo.playerNameStep && element.innerHTML === '') element.innerHTML = cross; else if (gameInfo.playerChip === 'o' && playerName === gameInfo.playerNameStep && element.innerHTML === '') element.innerHTML = zero; else return;
 
     await hubConnection.invoke("PlayerTurn", connectionId, +element.id);
@@ -28,6 +27,7 @@ function writeNewField() {
 async function restartGame() {
     await hubConnection.invoke("Restart", connectionId);
     document.querySelector('.winner-info-container').style.display = 'none';
+
     location.reload();
 }
 

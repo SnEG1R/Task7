@@ -11,8 +11,10 @@ public static class DependencyInjection
     public static IServiceCollection AddPersistence(this IServiceCollection services, 
         IConfiguration configuration)
     {
-        var connectionString = 
-            configuration["ConnectionStrings:TicTacToeDbConnectionStringDevelop"];
+        var connectionString = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                               == "Production" 
+            ? configuration["ConnectionStrings:TicTacToeDbConnectionStringProduction"]
+            : configuration["ConnectionStrings:TicTacToeDbConnectionStringDevelop"];
 
         services.AddDbContext<TicTacToeDbContext>(options =>
         {

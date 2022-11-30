@@ -28,7 +28,7 @@ public class LeaveGameCommandHandler
 
         var removedPlayer = game.Players
             .First(p => p.Name == request.PlayerName);
-
+   
         game.Players.Remove(removedPlayer);
 
         game.Status = GameStatuses.Completed;
