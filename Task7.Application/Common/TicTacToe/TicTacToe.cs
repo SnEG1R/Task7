@@ -9,11 +9,8 @@ public class TicTacToe : ITicTacToe
 
     public string? GetChipWinner(string[] playingField)
     {
-        if (playingField.All(e => e != GameChips.Empty))
-            return Winners.Draw;
-        
         var map = playingField.ConvertToMatrix(MapSize);
-        
+
         var searchResult = new List<string?>
         {
             SearchVerticalWinner(map),
@@ -23,6 +20,10 @@ public class TicTacToe : ITicTacToe
 
         var winner = searchResult
             .FirstOrDefault(r => r != null);
+
+        if (winner == null)
+            if (playingField.All(e => e != GameChips.Empty))
+                return Winners.Draw;
 
         return winner;
     }
